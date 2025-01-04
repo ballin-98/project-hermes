@@ -20,7 +20,7 @@ const options = {
 };
 
 // Basic route to fetch stock price
-app.get("/stocks/:symbol", async (req, res) => {
+app.get("/stocks/:symbol", async (req: Request, res: Response) => {
   const symbol = req.params.symbol.toUpperCase();
   try {
     const quote = await yahooFinance.chart(symbol, options);
@@ -30,7 +30,7 @@ app.get("/stocks/:symbol", async (req, res) => {
   }
 });
 
-app.post("/stock", async (req, res) => {
+app.post("/stock", async (req: Request, res: Response) => {
   const result: any[] = [];
   try {
     const { stocks } = req.body;
