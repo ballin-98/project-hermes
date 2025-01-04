@@ -21,12 +21,14 @@ const options = {
 
 // Basic route to fetch stock price
 app.get("/stocks/:symbol", async (req: Request, res: Response) => {
-  const symbol = req.params.symbol.toUpperCase();
   try {
+    const symbol = req.params.symbol.toUpperCase();
     const quote = await yahooFinance.chart(symbol, options);
     res.json({ quote: quote });
   } catch (error) {
-    res.status(500).json({ error: `Error fetching stock data ${error}` });
+    res
+      .status(500)
+      .json({ error: `Error fetching stock data for this ${req} ${error}` });
   }
 });
 
